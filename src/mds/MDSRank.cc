@@ -81,7 +81,7 @@ MDSRank::MDSRank(
   mdlog = new MDLog(this);
   balancer = new MDBalancer(this, messenger, monc);
 
-  scrubstack = new ScrubStack(mdcache);
+  scrubstack = new ScrubStack(mdcache, &finisher);
 
   inotable = new InoTable(this);
   snapserver = new SnapServer(this, monc);
