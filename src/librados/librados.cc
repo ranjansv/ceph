@@ -624,6 +624,11 @@ uint32_t librados::NObjectIteratorImpl::seek(uint32_t pos)
   return r;
 }
 
+void librados::NObjectIteratorImpl::set_filter(bufferlist &bl)
+{
+  ctx->nlc->filter = bl;
+}
+
 void librados::NObjectIteratorImpl::get_next()
 {
   const char *entry, *key, *nspace;
@@ -735,6 +740,11 @@ uint32_t librados::NObjectIterator::seek(uint32_t pos)
 {
   assert(impl);
   return impl->seek(pos);
+}
+
+void librados::NObjectIterator::set_filter(bufferlist &bl)
+{
+  impl->set_filter(bl);
 }
 
 void librados::NObjectIterator::get_next()
