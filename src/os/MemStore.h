@@ -128,6 +128,10 @@ public:
     page_set data;
     size_t data_len;
 
+    // use a thread-local vector for the pages returned by PageSet, so we
+    // can avoid allocations in read/write()
+    static thread_local typename page_set::page_vector tls_pages;
+
     PageSetObject() : data_len(0) {}
 
     size_t get_size() const override { return data_len; }
