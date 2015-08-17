@@ -342,6 +342,9 @@ struct pg_t {
    */
   unsigned get_split_bits(unsigned pg_num) const;
 
+  hobject_t get_hobj_start() const;
+  hobject_t get_hobj_end(unsigned pg_num) const;
+
   void encode(bufferlist& bl) const {
     __u8 v = 1;
     ::encode(v, bl);
