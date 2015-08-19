@@ -73,7 +73,8 @@ libcommon_internal_la_SOURCES = \
 	common/module.c \
 	common/Readahead.cc \
 	common/Cycles.cc \
-	common/ContextCompletion.cc
+	common/ContextCompletion.cc \
+	common/timegm.cc
 
 libcommon_internal_la_SOURCES += \
 	common/blkdev.cc
