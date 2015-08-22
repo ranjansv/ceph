@@ -196,6 +196,9 @@ case $1 in
     --memstore )
 	    memstore=1
 	    ;;
+    --newstore )
+	    newstore=1
+	    ;;
     --hitset )
 	    hitset="$hitset $2 $3"
 	    shift
@@ -271,6 +274,7 @@ else
         debug monc = 20
         debug journal = 20
         debug filestore = 20
+        debug newstore = 30
         debug rgw = 20
         debug objclass = 20'
     CMDSDEBUG='
@@ -292,6 +296,10 @@ fi
 if [ "$memstore" -eq 1 ]; then
     COSDMEMSTORE='
 	osd objectstore = memstore'
+fi
+if [ "$newstore" -eq 1 ]; then
+    COSDMEMSTORE='
+	osd objectstore = newstore'
 fi
 
 # lockdep everywhere?
@@ -390,6 +398,7 @@ if [ "$start_mon" -eq 1 ]; then
         rgw dns name = localhost
         filestore fd cache size = 32
         run dir = $CEPH_OUT_DIR
+        enable experimental unrecoverable data corrupting features = newstore rocksdb
 EOF
 if [ "$cephx" -eq 1 ] ; then
 cat <<EOF >> $conf_fn

@@ -1,4 +1,5 @@
 libos_types_la_SOURCES = \
+	os/newstore/newstore_types.cc \
 	os/Transaction.cc
 libos_types_la_CXXFLAGS = ${AM_CXXFLAGS}
 noinst_LTLIBRARIES += libos_types.la
@@ -7,6 +8,9 @@ if ENABLE_SERVER
 
 libos_la_SOURCES = \
 	os/chain_xattr.cc \
+	os/fs/FS.cc \
+	os/fs/XFS.cc \
+	os/newstore/NewStore.cc \
 	os/DBObjectMap.cc \
 	os/GenericObjectMap.cc \
 	os/FileJournal.cc \
@@ -47,6 +51,8 @@ noinst_LTLIBRARIES += libos.la
 noinst_HEADERS += \
 	os/btrfs_ioctl.h \
 	os/chain_xattr.h \
+	os/newstore/newstore_types.h \
+	os/newstore/NewStore.h \
 	os/BtrfsFileStoreBackend.h \
 	os/CollectionIndex.h \
 	os/DBObjectMap.h \
@@ -54,6 +60,8 @@ noinst_HEADERS += \
 	os/FileJournal.h \
 	os/FileStore.h \
 	os/FDCache.h \
+	os/fs/FS.h \
+	os/fs/XFS.h \
 	os/GenericFileStoreBackend.h \
 	os/HashIndex.h \
 	os/IndexManager.h \
