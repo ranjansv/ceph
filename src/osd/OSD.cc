@@ -8679,6 +8679,14 @@ int OSD::init_op_flags(OpRequestRef& op)
       }
       break;
 
+    case CEPH_OSD_OP_READ:
+    case CEPH_OSD_OP_SYNC_READ:
+    case CEPH_OSD_OP_SPARSE_READ:
+      if (m->ops.size() == 1 &&
+          iter->op.flags & CEPH_OSD_OP_FLAG_FADVISE_NOCACHE) {
+        op->set_skip_promote();
+      }
+      break;
     default:
       break;
     }
